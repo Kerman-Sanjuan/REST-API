@@ -1,0 +1,3 @@
+Para ejecutar el proyecto, moverse a la carpeta python y ejecutar los siguientes comandos:
+export FLASK_APP=./src/app.py     # Asi marcamos el directorio del main.
+FLASK_DEBUG=1 flask run     # Ejecutar la aplicación flask, puerto 5000.

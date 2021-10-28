@@ -24,7 +24,7 @@ var Details = /** @class */ (function () {
         __metadata("design:type", String)
     ], Details.prototype, "city", void 0);
     __decorate([
-        (0, typeorm_1.OneToOne)(function () { return Master_1.Master; }, { primary: true, cascade: true, onDelete: 'CASCADE' }),
+        (0, typeorm_1.OneToOne)(function () { return Master_1.Master; }, { primary: true, cascade: true, onDelete: "CASCADE" }),
         (0, typeorm_1.JoinColumn)(),
         __metadata("design:type", Master_1.Master)
     ], Details.prototype, "id", void 0);

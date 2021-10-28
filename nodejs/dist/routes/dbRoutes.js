@@ -39,32 +39,46 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var typeorm_1 = require("typeorm");
 var router = (0, express_1.Router)();
-router.get('/', function (req, resp) { return __awaiter(void 0, void 0, void 0, function () {
-    var manager, rawData;
+router.get("/", function (req, resp) { return __awaiter(void 0, void 0, void 0, function () {
+    var manager, rawData, rawData;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 manager = (0, typeorm_1.getManager)();
-                return [4 /*yield*/, manager.query("SELECT username\n  from master m join details d on (m.id = d.idId)  \n  where d.postal_code =" + req.query.id)];
+                if (!(req.query.postal_code == undefined)) return [3 /*break*/, 2];
+                return [4 /*yield*/, manager.query("SELECT *\n  from master m join details d on (m.id = d.idId)")];
             case 1:
                 rawData = _a.sent();
                 resp.json(rawData);
-                return [2 /*return*/];
+                return [3 /*break*/, 4];
+            case 2: return [4 /*yield*/, manager.query("SELECT username\n  from master m join details d on (m.id = d.idId)  \n  where d.postal_code =" + req.query.postal_code)];
+            case 3:
+                rawData = _a.sent();
+                resp.json(rawData);
+                _a.label = 4;
+            case 4: return [2 /*return*/];
         }
     });
 }); });
-router.delete('/', function (req, resp) { return __awaiter(void 0, void 0, void 0, function () {
+router.delete("/", function (req, resp) { return __awaiter(void 0, void 0, void 0, function () {
     var manager, rawData, rawData2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 manager = (0, typeorm_1.getManager)();
-                return [4 /*yield*/, manager.query("DELETE FROM master WHERE id  IN (SELECT idid from details where postal_code==" + req.query.id + ")")];
-            case 1:
+                if (!(req.query.postal_code == undefined)) return [3 /*break*/, 1];
+                resp.sendStatus(400);
+                return [3 /*break*/, 3];
+            case 1: return [4 /*yield*/, manager.query("DELETE FROM master WHERE id  IN (SELECT idid from details where postal_code==" +
+                    req.query.postal_code +
+                    ")")];
+            case 2:
                 rawData = _a.sent();
-                rawData2 = manager.query("DELETE FROM details   where details.postal_code=" + req.query.id);
-                resp.json(rawData);
-                return [2 /*return*/];
+                rawData2 = manager.query("DELETE FROM details   where details.postal_code=" + req.query.postal_code);
+                console.log(rawData);
+                resp.sendStatus(204);
+                _a.label = 3;
+            case 3: return [2 /*return*/];
         }
     });
 }); });
