@@ -45,4 +45,4 @@ def add_city(username, city, postal_code):
     session.add(detail)
     session.commit()
     return {'status': "201 CREATED",
-            'details': "Username "+username+" with postal code "+postal_code+"and city"+city+" correctly created and added to the database"}, 201
+            'details': "Username "+username+ " with postal code "+postal_code+" and city "+city+" correctly created and added to the database"}, 201

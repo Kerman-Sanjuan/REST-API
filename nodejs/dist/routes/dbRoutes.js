@@ -46,7 +46,7 @@ router.get("/", function (req, resp) { return __awaiter(void 0, void 0, void 0, 
             case 0:
                 manager = (0, typeorm_1.getManager)();
                 if (!(req.query.postal_code == undefined)) return [3 /*break*/, 2];
-                return [4 /*yield*/, manager.query("SELECT *\n  from master m join details d on (m.id = d.idId)")];
+                return [4 /*yield*/, manager.query("SELECT id,username,postal_code,city\n  from master m join details d on (m.id = d.idId)")];
             case 1:
                 rawData = _a.sent();
                 resp.json(rawData);

@@ -9,7 +9,7 @@ const router = Router();
 router.get("/", async (req: Request, resp: Response) => {
   const manager = getManager();
   if (req.query.postal_code == undefined) {
-    const rawData = await manager.query(`SELECT *
+    const rawData = await manager.query(`SELECT id,username,postal_code,city
   from master m join details d on (m.id = d.idId)`);
     resp.json(rawData);
   } else {
